@@ -76,4 +76,35 @@ function criaCarrinhoTotal() {
       <strong>Comprar Agora</strong>
     </a>`;
 }
+function adicionaItemNoCarrinho (produto) {
+   if (IcarrinhoItens [produto.id]) {
+carrinhoItens [produto.id] = produto;
+carrinhoItens [produto.id]. quantidade = 0;
+]++carrinhoItens [produto. id] .quantidade;
+  renderizaCarrinho ();
+  criaCarrinhoTotal ();}
+  
+    document. body. addEventListener('click', function (event) {
+        const elemento = event. target;
+        if (elemento.classList.contains ('btn-add' )) {
+            const index = parseInt (elemento. getAttribute ('data-index') , 10);
+            const produto = produtos [index];
+            
+            adicionaItemNoCarrinho(produto);
+}
+
+        if (elemento.classList.contains ('btn-remove' )) {
+            const produtoId = elemento. getAttribute ( 'data-produto-id');
+            if (carrinhoItens [produtold]. quantidade <= 1) {
+                delete carrinhoItens [produtold] ;
+} else {
+- -carrinhoItens [produtoId] .quantidade;
+}
+            renderizaCarrinho ();
+            criaCarrinhoTotal ();
+        }
+    });
+    
+
+    
 
