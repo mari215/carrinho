@@ -76,35 +76,41 @@ function criaCarrinhoTotal() {
       <strong>Comprar Agora</strong>
     </a>`;
 }
-function adicionaItemNoCarrinho (produto) {
-   if (IcarrinhoItens [produto.id]) {
-carrinhoItens [produto.id] = produto;
-carrinhoItens [produto.id]. quantidade = 0;
-]++carrinhoItens [produto. id] .quantidade;
-  renderizaCarrinho ();
-  criaCarrinhoTotal ();}
-  
-    document. body. addEventListener('click', function (event) {
-        const elemento = event. target;
-        if (elemento.classList.contains ('btn-add' )) {
-            const index = parseInt (elemento. getAttribute ('data-index') , 10);
-            const produto = produtos [index];
+//função aceitando argumento "produto"
+function adicionaItemNoCarrinho(produto) {
+//criando uma condição para aumento de produtos no carrinho
+   if (!carrinhoItens[produto.id]) {
+carrinhoItens[produto.id] = produto;
+carrinhoItens[produto.id].quantidade = 0;
+   }++carrinhoItens[produto. id].quantidade;
+//chamando funções anteriores 
+  renderizaCarrinho();
+  criaCarrinhoTotal();}
+
+//criando um evento 
+    document.body.addEventListener('click', function (event) {
+        const elemento = event.target;
+//criando uma condição em caso de clique no botão
+        if (elemento.classList.contains('btn-add' )) {
+//geralmente o data index é usado para armazenar o índice do produto em relação ao botão
+            const index = parseInt(elemento.getAttribute('data-index'), 10);
+            const produto = produtos[index];
             
             adicionaItemNoCarrinho(produto);
 }
-
-        if (elemento.classList.contains ('btn-remove' )) {
-            const produtoId = elemento. getAttribute ( 'data-produto-id');
-            if (carrinhoItens [produtold]. quantidade <= 1) {
-                delete carrinhoItens [produtold] ;
-} else {
-- -carrinhoItens [produtoId] .quantidade;
+//criando uma condição de retirada do produto ao carrinho 
+        if (elemento.classList.contains('btn-remove')) {
+            const produtoId = elemento.getAttribute ('data-produto-id');
+//verifcando quantidade de produto no carrinho, se for menor ou = a 1 o produto é removido
+            if (carrinhoItens[produtoId].quantidade <= 1) {
+                delete carrinhoItens [produtoId] ;
 }
-            renderizaCarrinho ();
-            criaCarrinhoTotal ();
+//verificando quantidade, se for maior que 1 diminui a quantidade do produto em 1
+            else {
+- -carrinhoItens[produtoId].quantidade;
+}
+//chamando funções anteriores
+            renderizaCarrinho();
+            criaCarrinhoTotal();
         }
     });
-    
-
-    
-
